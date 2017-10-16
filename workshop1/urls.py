@@ -15,10 +15,16 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from rest_framework import routers
 
-from orders.views import index
+from orders.views import index, OrderViewSet
+
+router = routers.SimpleRouter()
+router.register(r'api/order', OrderViewSet)
 
 urlpatterns = [
     url(r'^$', index),
     url(r'^admin/', admin.site.urls),
 ]
+
+urlpatterns += router.urls
